@@ -1,4 +1,4 @@
-.table-day td.ant-table-cell, .table-day th {
+.table-day td.ant-table-cell, .table-day th.ant-table-cell {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   text-align: center;
   width: 190px;
@@ -25,3 +25,5 @@ table .table-day{
   flex: 1 1 auto;
   margin: 0px 5px;
 }
+
+
