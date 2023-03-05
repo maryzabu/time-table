@@ -1,18 +1,20 @@
 import {DatePicker, Space, Table, Tag} from 'antd';
 import {TableDay} from "./TableDay";
 import React, {useEffect, useState} from "react";
-import {AdminProps} from "../Admin";
+import {WeekDateDayResponse} from "../../externals/admin/adminRepositories";
 
-export const TableComponent: React.FC<AdminProps> = ({data}) => {
+type Props = {
+  data: WeekDateDayResponse;
+}
+export const TableComponent: React.FC<Props> = ({data}) => {
 
   const [openDatePicker, setOpenDatePicker] = useState(false);
   return (
     <div className="admin" style={{textAlign: 'center'}}>
       <h1 style={{textAlign: 'center'}}>Редактирование расписания</h1>
       <div className={'i-flex-container'}>
-        {data.map(({date, data}) => <div className={'.i-flex-item'}><TableDay data={data} date={date}
-                                                                              setOpenDatePicker={setOpenDatePicker}/>
-        </div>)}
+        <TableDay {...data}
+                  setOpenDatePicker={setOpenDatePicker}/>
       </div>
     </div>
   );

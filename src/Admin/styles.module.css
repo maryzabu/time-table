@@ -9,3 +9,7 @@
 .admin {
   
 }
+
+.admin .ant-form.ant-form-item.week-day{
+  width: 150px!important;
+}

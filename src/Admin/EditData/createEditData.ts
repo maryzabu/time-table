@@ -1,22 +1,20 @@
 import {TableDayProps} from "./TableDay";
 import dayjs, {Dayjs} from "dayjs";
+import {WeekDayE} from "../types";
+import {WeekDateDayResponse} from "../../externals/admin/adminRepositories";
 
 const DEFAULT_START_WEEK_DATE_STRING = '2023-02-27';
 const DEFAULT_START_WEEK_DATE = dayjs(DEFAULT_START_WEEK_DATE_STRING);
 const dateToDateString = (date: Dayjs): string => date.format('YYYY-MM-DD');
 const addDayToStr = (value: number) => dateToDateString(DEFAULT_START_WEEK_DATE.add(1, 'day'));
 export const createEditData = () => ({
-  data: [
-    createWeekDay(),
-    createWeekDay({weekDay: 'Вторник', date: addDayToStr(1)}),
-    createWeekDay({weekDay: 'Вторник', date: addDayToStr(2)}),
-  ]
+  data: createWeekDay(),
 
 });
 
-export const createWeekDay = (weekDayData?: Partial<TableDayProps>) => ({
-  weekDay: 'Понедельник',
-  date: '2023-02-27',
+export const createWeekDay = (weekDayData?: Partial<TableDayProps>): WeekDateDayResponse => ({
+  weekDay: WeekDayE.Monday,
+  date: DEFAULT_START_WEEK_DATE_STRING,
   data: mockDay.data,
   ...weekDayData
 });
@@ -26,8 +24,13 @@ const mockDay = {
   date: '2023-02-27',
   data: [
     {
-      time: '8:30-9:10',
-      c10g: 'Английский язык\nИванова В.В. 404/\nКайдаш М.А. 402',
+      time: ['08:30', '09:10'],
+      c10g: {
+        subjectId: 0, teachers: [{
+          teacher: id,
+          room: string
+        }]
+      }, 'Английский язык\nИванова В.В. 404/\nКайдаш М.А. 402',
       c10se: `Индивидуальный проект\nВолодин Р.С. 312`,
       c10t: `Литература\nМеркулова К.И.`,
       c11g: `Испанский язык\nКолбасова А.О. 307/ \n Дегтярь Д.М. 310`,
@@ -35,7 +38,7 @@ const mockDay = {
       c11t: `История\nДимидов Л.Г.`,
     },
     {
-      time: '9:20-10:00',
+      time: ['09:20', '10:00'],
       c10g: `Испанский язык\nКолбасова А.О. 307/ \n Дегтярь Д.М. 310`,
       c10se: `Английский язык\nАнтонова Н.И. 402/ \n Кайдаш М.А. 404`,
       c10t: `История\nДимидов Л.Г.`,
@@ -44,7 +47,7 @@ const mockDay = {
       c11t: `Физика\nКоваль В.В.`,
     },
     {
-      time: '10:10-10:50',
+      time: ['10:10', '10:50'],
       c10g: 'Английский язык\nИванова В.В. 404/\n Кайдаш М.А. 402',
       c10se: 'Обществознание\nКазанцев О.А.',
       c10t: 'Физика\nКоваль В.В.',
@@ -53,7 +56,7 @@ const mockDay = {
       c11t: 'Индивидуальный проект\nВолодин Р.С. 312',
     },
     {
-      time: '11:00-11:40',
+      time: ['11:00', '11:40'],
       c10g: 'Столовая, пауза',
       c10se: 'Пауза, столовая',
       c10t: `Физика\nКоваль В.В.`,
@@ -62,7 +65,7 @@ const mockDay = {
       c11t: `Английский язык\nИванова В.В. 404/ \n Антонова Н.И. 402`,
     },
     {
-      time: '11:50-12:30',
+      time: ['11:50', '12:30'],
       c10g: `Английский язык\nИванова В.В. 404/ \n Кайдаш М.А. 402`,
       c10se: `Обществознание\nКазанцев О.А.`,
       c10t: 'Столовая, пауза',
@@ -71,7 +74,7 @@ const mockDay = {
       c11t: `Физика\nКоваль В.В.`,
     },
     {
-      time: '12:40-13:20',
+      time: ['12:40', '13:20'],
       c10g: `Английский язык\nИванова В.В. 404/ \n Кайдаш М.А. 402`,
       c10se: `История\nДимидов Л.Г.`,
       c10t: `Физика\nКоваль В.В.</`,
@@ -80,7 +83,7 @@ const mockDay = {
       c11t: 'Пауза, столовая',
     },
     {
-      time: '13:30-14:10',
+      time: ['13:30', '14:10'],
       c10g: `Разговоры о важном\nИванова В.В.`,
       c10se: `История\nДимидов Л.Г.`,
       c10t: `Индивидуальный проект\nВолодин Р.С. 312`,
@@ -89,7 +92,7 @@ const mockDay = {
       c11t: `Физика\nКоваль В.В.`,
     },
     {
-      time: '14:20-15:00',
+      time: ['14:20', '15:00'],
       c10g: `Индивидуальный проект\nВолодин Р.С. 312`,
       c10se: `Разговоры о важном\nДимидов Л.Г.`,
       c10t: `Разговоры о важном\nМирошник М.И.`,
