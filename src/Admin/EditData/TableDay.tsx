@@ -3,18 +3,22 @@ import React, {ReactElement} from "react";
 
 import dayjs from "dayjs";
 
+type TimeRowDataT = {
+  time: string,
+  c10g: string,
+  c10se: string,
+  c10t: string,
+  c11g: string,
+  c11se: string,
+  c11t: string,
+}
 
 export type TableDayProps = {
+  // Расписание относится к конкретному дню недели
+  weekDay: string;
+  // Начиная с этого дня, день должен быть кратным/сопоставлен с днем недели
   date: string;
-  data: {
-    time: string,
-    c10g: string,
-    c10se: string,
-    c10t: string,
-    c11g: string,
-    c11se: string,
-    c11t: string,
-  }[],
+  data: TimeRowDataT[],
 
 }
 
@@ -74,9 +78,10 @@ export function TableDay({date, data, setOpenDatePicker}: Props) {
   const letterDate = dateDjs.format('dddd');
 
 
-  return (<Table columns={columns} title={() =>( 
+  return (<Table columns={columns} title={() => (
     <Typography.Text>
-      {letterDate[0].toUpperCase()}{letterDate.substring(1)} <DatePicker format="DD.MM.YYYY" value={dateDjs} allowClear={false}/>
+      {letterDate[0].toUpperCase()}{letterDate.substring(1)} <DatePicker format="DD.MM.YYYY" value={dateDjs}
+                                                                         allowClear={false} className="date-picker"/>
     </Typography.Text>)}
 
                  dataSource={data} pagination={false} className={'table-day'}/>);

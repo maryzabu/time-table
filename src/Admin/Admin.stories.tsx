@@ -19,6 +19,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   data: [
     {
+      weekDay: 'Понедельник',
       date: '2023-02-28',
       data: [
         {

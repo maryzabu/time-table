@@ -1,10 +1,14 @@
 import React from "react";
-import {TableComponent} from "./table";
-import {TableDayProps} from "./table/TableDay";
+import {TableComponent} from "./EditData";
+import {TableDayProps} from "./EditData/TableDay";
+import {Form} from "antd";
 
 export type AdminProps = {
   data: TableDayProps[];
 }
-export const Admin: React.FC<AdminProps> = (props) => (
-  <TableComponent {...props}/>
-);
+export const Admin: React.FC<AdminProps> = (props) => {
+/*const [form] = Form.useForm<FormValues>()*/
+
+
+  return (<TableComponent {...props}/>);
+};
