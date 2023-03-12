@@ -13,7 +13,7 @@ import { WeekDayE } from "../types";
 import { WeekDateDayResponse } from "../../externals/admin/adminRepositories";
 
 export type TableDayProps = WeekDateDayResponse;
-
+const defaultDuration = 40;
 type Props = {
   data: FormListFieldData[];
 };
@@ -43,13 +43,27 @@ const columns = [
     ),
     className: "first",
   },
-  /*  {
+ {
       title: "10 г",
       dataIndex: "c10g",
       key: "c10g",
-      render: renderBr,
+      render: (values: unknown, record: FormListFieldData, index: number)=>(
+        <Form.Item
+          noStyle
+          shouldUpdate
+        >
+          
+          <TimePicker.RangePicker
+            format="HH:mm"
+            allowEmpty={[false, false]}
+            allowClear={false}
+            minuteStep={10}
+          />
+        </Form.Item>
+       
+      ),
     },
-    {
+  /*     {
       title: "10 сэ",
       dataIndex: "c10se",
       key: "c10se",
